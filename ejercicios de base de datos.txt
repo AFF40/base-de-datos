@@ -1,0 +1,7 @@
+ejercicios 
+1.- seleccione todos los empleados que no tengan jefe
+SELECT * FROM employees WHERE employees.reportsTo is NULL;
+2.- seleccione todos los empleados que son jefes
+ select * FROM employees where employeeNumber in (SELECT DISTINCT reportsTo FROM employees WHERE reportsTo is not null);
+3.- seleccione todos los empleados que no son jefes
+mysql> select * FROM employees where employeeNumber not in (SELECT DISTINCT reportsTo FROM employees WHERE reportsTo is not null);
