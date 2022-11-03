@@ -1,0 +1,17 @@
+seleccionar todas las columnas : select * from "nombre de tabla"  Where "condicion " ;
+between ("inicio rango de fecha" and "rango final de fecha")
+4) 36 filas
+select * from customers where country= "USA"
+5) 14 filas 
+select customerName ,phone from customers where customerName like "M%";
+6) 1 fila
+ select * from customers where country ="Germany" && customerName like "%&%" order by customerName DESC;
+7)
+select * from orders where orderDate between "01-01-2004" and "31-12-2004" order by shippedDate;
+8)
+select * from payments where (paymentDate >= "2003-01-01" and paymentDate<="2003-12-31") and amount >= 1000 order by amount desc ;
+9)
+ select * from payments where paymentDate between "2004-01-01" and "2004-12-31" order by amount desc limit 10;
+10)
+ select * from payments where paymentDate between "2004-01-01" and "2004-12-31" order by amount asc limit 10;
+
