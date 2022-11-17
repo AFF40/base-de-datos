@@ -20,3 +20,19 @@ select employees.* from employees join offices on employees.officeCode = offices
 
 12)
 select sum(payments.amount)as total_ventas from payments join customers on payments.customernumber=customers.customerNumber join orders on customers.customerNumber=orders.customerNumber join orderdetails on orders.orderNumber=orderdetails.orderNumber join products on orderdetails.productCode = products.productCode join productlines on products.productLine=productLines.productLine where productLines.productLine = "Motorcycles";
+
+13) 3filas
+ select products.* from products join productlines on products.productline = productlines.productline where products.productline = "Trains";
+
+14)3 filas
+select * from payments join customers on payments.customernumber=customers.customerNumber where customerName ="Mini Wheels co.";
+
+15) 23 filas
+select * from customers join payments on customers.customernumber=payments.customernumber where customers.country="Spain";
+
+16)1052 filas
+
+ select products.* from orderDetails join orders on orders.orderNumber = orderDetails.orderNumber join products on products.productCode = orderDetails.productCode where orderDate between "2003-01-01" and "2003-12-31";
+
+17) 8 filas
+select employees.* from employees join offices on employees.officeCode=offices.officeCode where offices.country = "USA" and employees.reportsTo != offices.country  ;
