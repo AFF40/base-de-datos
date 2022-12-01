@@ -36,3 +36,41 @@ select * from customers join payments on customers.customernumber=payments.custo
 
 17) 8 filas
 select employees.* from employees join offices on employees.officeCode=offices.officeCode where offices.country = "USA" and employees.reportsTo != offices.country  ;
+18) 115 filas
+ select productName from products join orderdetails on products.productCode=orderdetails.productCode join orders on orders.orderNumber= orderDetails.orderNumber join customers on customers.customerNumber= orders.customerNumber where customers.contactLastName = "Young";
+ 
+19) 28filas
+select orders.* from orders join orderdetails on orderDetails.orderNumber= orders.orderNumber join products on orderDetails.productCode= products.productCode where products.productName="P-51-D Mustang";
+
+20) 1010 filas
+select orders.* from orders join orderdetails on orderDetails.orderNumber=orders.orderNumber join products on OrderDetails.productCode= products.productCode  where products.productLine="Classic Cars";
+
+21) 0 filas
+select orderNumber from orders join customers on orders.customerNumber= customers.customerNumber join employees on customers.salesRepEmployeeNumber= employees.employeeNumber where employees.firstName= "Tom" and employees.lastName= "King";
+
+22) 273 filas
+select payments.* from payments join customers on payments.customerNumber= customers.customerNumber where customers.customerName != "Pitit Auto";
+
+23) 13 filas
+select employees.* from employees join offices on employees.officeCode= offices.officeCode where offices.country!= "USA";
+
+24) 4152 filas
+select products.* from products join orderDetails on products.productCode= orderDetails.productCode join orders on orderDetails.orderNumber= orders.orderNumber join customers on orders.customerNumber= customers.customerNumber join payments on customers.customerNumber = payments.customernumber where payments.paymentDate between "2003-01-01" and "2003-12-31";
+
+25) suma total 44171665.16
+ select SUM(payments.amount) from payments join customers on payments.customerNumber= customers.customerNumber join orders on customers.customernumber= orders.customerNumber join orderDetails on orders.orderNumber = orderDetails.orderNumber join products on orderDetails.productCode= products.productCode join productLines on products.productLine= productLines.productLine where productLines.productLine="Planes" ;
+ 
+ 26) suma tota 191923032.08
+ select SUM(payments.amount) from payments join customers on payments.customerNumber= customers.customerNumber join orders on customers.customernumber= orders.customerNumber join orderDetails on orders.orderNumber = orderDetails.orderNumber join products on orderDetails.productCode= products.productCode join productLines on products.productLine= productLines.productLine where customers.country="SPAIN" ;
+ 
+ 27) 2 empleados
+select employees.* from employees join offices on employees.officeCode=offices.officeCode where offices.country="Japan";
+
+28) 5 lineas
+select products.productName, COUNT(*) FROM products join orderdetails on products.productCode= orderdetails.productCode join orders on orders.orderNumber= orderdetails.orderNumber join customers on customers.customerNumber= orders.customerNumber join payments on customers.customerNumber= payments.customerNumber where payments.paymentDate BETWEEN '2003-01-01' AND '2003-12-31' GROUP BY products.productName ORDER BY COUNT(*) DESC LIMIT 5;
+
+29) 5 lineas
+select employees.lastName, COUNT(*) FROM products join orderdetails on products.productCode= orderdetails.productCode join orders on orders.orderNumber= orderdetails.orderNumber join customers on customers.customerNumber= orders.customerNumber join employees on employees.employeeNumber= customers.salesRepEmployeeNumber join payments on customers.customerNumber= payments.customerNumber where payments.paymentDate BETWEEN '2003-01-01' AND '2003-12-31' GROUP BY employees.lastName ORDER BY COUNT(*) DESC LIMIT 5;
+
+30) 5 lineas
+select customers.customerName, COUNT(*) FROM products join orderdetails on products.productCode= orderdetails.productCode on orders ON orders.orderNumber= orderdetails.orderNumber join customers on customers.customerNumber= orders.customerNumber join employees on employees.employeeNumber= customers.salesRepEmployeeNumber join payments on customers.customerNumber= payments.customerNumber where payments.paymentDate BETWEEN '2003-01-01' AND '2003-12-31' GROUP BY customers.customerName ORDER BY COUNT(*) DESC LIMIT 5;
